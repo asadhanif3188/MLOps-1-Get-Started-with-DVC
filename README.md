@@ -135,6 +135,19 @@ git checkout <...>
 dvc checkout
 ```
 
+## Return to a previous version of the dataset
+Let's go back to the original version of the data:
 
+```
+git checkout HEAD~1 data/data.xml.dvc
+dvc checkout
+```
 
+Let's commit it (no need to do `dvc push` this time since this original version of the dataset was already saved):
+
+```
+git commit data/data.xml.dvc -m "Revert dataset updates"
+```
+
+**Note:** As we can see, DVC is technically not a version control system by itself! It manipulates `.dvc` files, whose contents define the data file versions. Git is already used to version our code, and now it can also version our data alongside it.
 
