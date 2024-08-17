@@ -127,4 +127,14 @@ dvc push
 git add . && git commit -m "Dataset updated"
 ```
 
+## Switching between versions
+A commonly used workflow is to use `git checkout` to switch to a branch or checkout a specific `.dvc` file revision, followed by a `dvc checkout` to sync data into your workspace:
+
+```
+git checkout <...>
+dvc checkout
+```
+
+
+
 
