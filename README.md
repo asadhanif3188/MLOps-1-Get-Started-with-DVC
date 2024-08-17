@@ -49,5 +49,7 @@ git add .
 git commit -m "Add raw data"
 ```
 
+*Note:* Now the **metadata about our data** is versioned alongside our source code, while the original data file was added to `.gitignore`.
+
 
 
