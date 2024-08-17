@@ -106,3 +106,25 @@ Now we can run `dvc pull` to retrieve the data from the remote:
 dvc pull -v
 ```
 
+## Making local changes
+
+Next, let's say we obtained more data from some external source. We will simulate this by doubling the dataset contents:
+```
+cp data/data.xml data/dup-data.xml
+cat data/dup-data.xml >> data/data.xml
+rm -f data/dup-data.xml
+```
+
+After modifying the data, run `dvc add` again to track the latest version:
+```
+dvc add data/data.xml
+```
+
+Now we can run `dvc push` to upload the changes to the remote storage, followed by a `git commit` to track them:
+
+```
+dvc push
+git add . && git commit -m "Dataset updated"
+```
+
+
