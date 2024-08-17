@@ -51,5 +51,36 @@ git commit -m "Add raw data"
 
 *Note:* Now the **metadata about our data** is versioned alongside our source code, while the original data file was added to `.gitignore`.
 
+## Storing and sharing
+
+We can upload DVC-tracked data to a variety of storage systems (remote or local) referred to as "remotes". For simplicity, we will use a "local remote" for practice, which is just a directory in the local file system.
+
+### Configuring a remote
+
+Before pushing data to a remote we need to set it up using the `dvc remote add` command:
+
+```
+mkdir D:\workspace-mlops\dvcstore
+dvc remote add -d myremote D:\workspace-mlops\dvcstore
+```
+
+*Note:* DVC supports many remote **storage types**, including *Amazon S3, NFS, SSH, Google Drive, Azure Blob Storage, and HDFS*.
+
+An example for a common use case is configuring an *Amazon S3* remote:
+```
+dvc remote add -d storage s3://mybucket/dvcstore
+```
+For this to work, we'll need an AWS account and credentials set up to allow access.
+
+### Uploading data
+Now that a storage remote was configured, run dvc push to upload data:
+```
+dvc push
+```
+
+*Note:* `dvc push` copied the data cached locally to the remote storage we set up earlier.
+
+Usually, we would also want to Git track any code changes that led to the data change (`git add, git commit and git push`).
+
 
 
