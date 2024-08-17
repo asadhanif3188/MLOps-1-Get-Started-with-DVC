@@ -83,4 +83,26 @@ dvc push
 Usually, we would also want to Git track any code changes that led to the data change (`git add, git commit and git push`).
 
 
+### Retrieving data
+
+Once DVC-tracked data and models are stored remotely, they can be downloaded with `dvc pull` when needed (e.g. in other copies of this project). Usually, we run it after `git pull` or `git clone`.
+
+Let's try this now:
+
+```
+dvc pull
+```
+
+*Note:* After running `dvc push` above, the `dvc pull` command afterwards was short-circuited by DVC for efficiency. The project's `data/data.xml` file, our cache and the remote storage were all already in sync. We need to empty the cache and delete `data/data.xml` from our project if we want to have DVC actually moving data around. 
+
+Let's do that now:
+```
+rm -rf .dvc\cache
+rm -f data\data.xml
+```
+
+Now we can run `dvc pull` to retrieve the data from the remote:
+```
+dvc pull -v
+```
 
